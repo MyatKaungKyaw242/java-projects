@@ -1,0 +1,246 @@
+class Customer {
+
+
+   private String name;
+   private String phone;
+
+
+   public Customer() {
+       this.name = "Guest";
+       this.phone = "N/A";
+   }
+
+
+   public Customer(String name) {
+       this.name = name;
+       this.phone = "N/A";
+   }
+
+
+   public Customer(String name, String phone) {
+       this.name = name;
+       this.phone = phone;
+   }
+
+
+   public void showInfo() {
+       System.out.println("---------------");
+       System.out.println("Name: " + name);
+       System.out.println("Phone: " + phone);
+   }
+}
+class Product {
+
+
+   private String productName;
+   private double price;
+
+
+
+
+   public Product() {
+       this.productName = "Unknown";
+       this.price = 0.0;
+   }
+
+
+   public Product(String productName) {
+       this.productName = productName;
+       this.price = 0.0;
+   }
+
+
+   public Product(String productName, double price) {
+       this.productName = productName;
+
+
+       if (price < 0) {
+           this.price = 0.0;
+       } else {
+           this.price = price;
+       }
+   }
+   public double getPrice() {
+       return price;
+   }
+   public void setPrice(double price) {
+       if (price < 0) {
+           this.price = 0.0;
+       } else {
+           this.price = price;
+       }
+   }
+   public void showInfo() {
+       System.out.println("Product Name: " + productName);
+       System.out.println("Price: " + price);
+   }
+}
+class Order {
+
+
+   private String orderId;
+   private String customerName;
+   private String productName;
+   private int quantity;
+
+
+   public Order() {
+       this.orderId = "N/A";
+       this.customerName = "Guest";
+       this.productName = "Unknown";
+       this.quantity = 1;
+   }
+   public Order(String orderId, String customerName, String productName) {
+       this.orderId = orderId;
+       this.customerName = customerName;
+       this.productName = productName;
+       this.quantity = 1;
+   }
+
+
+   public Order(String orderId, String customerName, String productName, int quantity) {
+       this.orderId = orderId;
+       this.customerName = customerName;
+       this.productName = productName;
+
+
+       if (quantity <= 0) {
+           this.quantity = 1;
+       } else {
+           this.quantity = quantity;
+       }
+   }
+
+
+   public void showInfo() {
+       System.out.println("Order ID: " + orderId);
+       System.out.println("Customer Name: " + customerName);
+       System.out.println("Product Name: " + productName);
+       System.out.println("Quantity: " + quantity);
+   }
+}
+public class Main {
+   public static void main(String[] args) {
+
+
+
+
+       System.out.println("Task 1:");
+
+
+       Customer c1 = new Customer();
+       Customer c2 = new Customer("Alice");
+       Customer c3 = new Customer("Bob", "0912345678");
+
+
+       c1.showInfo();
+       System.out.println();
+
+
+       c2.showInfo();
+       System.out.println();
+
+
+       c3.showInfo();
+       System.out.println();
+
+
+
+
+
+
+       System.out.println("Task 2:");
+
+
+       Product p1 = new Product();
+       Product p2 = new Product("Laptop", 1000);
+       Product p3 = new Product("Phone", -200);
+
+
+       p1.showInfo();
+       System.out.println();
+
+
+       p2.showInfo();
+       System.out.println();
+
+
+       p3.showInfo();
+       System.out.println();
+
+
+
+
+
+
+       System.out.println("Task 3:");
+
+
+       Order o1 = new Order();
+       Order o2 = new Order("O001", "Alice", "Laptop");
+       Order o3 = new Order("O002", "Bob", "Phone", 3);
+
+
+       o1.showInfo();
+       System.out.println();
+
+
+       o2.showInfo();
+       System.out.println();
+
+
+       o3.showInfo();
+       System.out.println();
+
+
+
+
+
+
+       System.out.println("Task 4:");
+
+
+       System.out.println("Before update:");
+       p2.showInfo();
+       System.out.println();
+
+
+
+
+       p2.setPrice(p2.getPrice() + 20);
+
+
+       System.out.println("After update:");
+       p2.showInfo();
+       System.out.println();
+
+
+
+
+
+
+       System.out.println("Task 5:");
+
+
+       Customer c4 = new Customer("Michael", "0987654321");
+       Product p4 = new Product("Headphones", 150);
+       Order o4 = new Order("O100", "Michael", "Headphones", 2);
+
+
+       c4.showInfo();
+       System.out.println();
+
+
+       p4.showInfo();
+       System.out.println();
+
+
+       o4.showInfo();
+       System.out.println();
+
+
+       double total = p4.getPrice() * 2;
+       System.out.println("Total Price: " + total);
+   }
+}
+
