@@ -1,0 +1,66 @@
+public class Staff{
+   protected String staffName;
+   protected String staffld;
+
+
+   public Staff(String staffName, String staffld){
+       this.staffName = staffName;
+       this.staffld = staffld;
+   }
+   public void showStaffInfo(){
+       System.out.println("Staff Name: " + staffName);
+       System.out.println("Staff ID: " + staffld);
+   }
+}
+public class AcademicStaff extends Staff{
+   protected String faculty;
+   protected double salary;
+
+
+   public AcademicStaff(String staffName, String staffld, String faculty, double salary){
+       super(staffName, staffld);
+       this.faculty = faculty;
+       this.salary = salary;
+
+
+   }
+   public void showAcademicInfo(){
+       showStaffInfo();
+       System.out.println("Faculty: " + faculty);
+       System.out.println("Salary: " + salary);
+   }
+}
+public class Lecturer extends AcademicStaff {
+   private String subject;
+   private int yearsOfExperience;
+
+
+   public Lecturer(String staffName, String staffld, String faculty, double salary, String subject, int yearsOfExperience) {
+       super(staffName, staffld, faculty, salary);
+       this.subject = subject;
+       this.yearsOfExperience = yearsOfExperience;
+   }
+
+
+   public void showLectureInfo() {
+       showAcademicInfo();
+       System.out.println("Subject: " + subject);
+       System.out.println("Years of Experience: " + yearsOfExperience);
+   }
+}
+public class Main {
+   public static void main (String[]args){
+       Lecturer lecture = new Lecturer(
+               "Dr.Anan",
+               "ST001",
+               "Engineering",
+               65000.0,
+               "Software Engineering",
+               10
+       );
+       lecture.showLectureInfo();
+
+
+   }
+}
+
