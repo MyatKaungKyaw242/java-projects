@@ -1,0 +1,69 @@
+public class Product {
+   protected String productName;
+   protected double price;
+
+
+   public Product(String productName, double price) {
+       this.productName = productName;
+       this.price = price;
+   }
+   public void getDetails() {
+       System.out.println("Product Name: " + productName);
+       System.out.println("Price: " + price);
+   }
+}
+public class ElectronicProduct extends Product {
+   protected int warrantyPeriod;
+
+
+   public ElectronicProduct(String productName, double price, int warrantyPeriod) {
+       super(productName, price);
+       this.warrantyPeriod = warrantyPeriod;
+   }
+
+
+   public void showWarranty() {
+       System.out.println("Warranty: " + warrantyPeriod + " years");
+   }
+}
+
+
+public class Smartphone extends ElectronicProduct {
+   private String operatingSystem;
+   private int storage;
+
+
+   public Smartphone(String productName, double price, int warrantyPeriod,
+                     String operatingSystem, int storage) {
+       super(productName, price, warrantyPeriod);
+       this.operatingSystem = operatingSystem;
+       this.storage = storage;
+   }
+
+
+   public void showSpecs() {
+       System.out.println("Operating System: " + operatingSystem);
+       System.out.println("Storage: " + storage + " GB");
+   }
+}
+
+
+public class Main {
+   public static void main(String[] args) {
+
+
+       Smartphone phone = new Smartphone(
+               "iPhone 15",
+               39900.0,
+               2,
+               "iOS",
+               256
+       );
+
+
+       phone.getDetails();
+       phone.showWarranty();
+       phone.showSpecs();
+   }
+}
+
