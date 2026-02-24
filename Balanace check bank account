@@ -1,0 +1,108 @@
+public class Bank {
+   private String accountName;
+   private double balance;
+
+
+   public void setAccountName(String name){
+       this.accountName = name;
+   }
+
+
+   public void deposit(double amount){
+       balance = balance + amount;
+   }
+
+
+   public void withdraw (double amount){
+       balance = balance - amount;
+   }
+   public double getBalance(){
+       return balance;
+   }
+   public void showInfo(){
+       System.out.println("Account Name: " +accountName);
+       System.out.println("Balance: " +balance+ " Baht");
+   }
+}
+
+
+public class Main {
+   public static void main(String[] args) {
+
+
+
+
+       Bank a1 = new Bank();
+       a1.setAccountName("AccountA");
+       a1.deposit(2000);
+       a1.showInfo();
+       System.out.println();
+
+
+
+
+       Bank a2 = new Bank();
+       a2.setAccountName("AccountB");
+       a2.deposit(1000);
+       a2.withdraw(300);
+       System.out.println("Remaining balance of a2: " + a2.getBalance() + " Baht");
+       System.out.println();
+
+
+
+
+       a1.deposit(500);
+       a2.deposit(700);
+
+
+
+
+       System.out.println("-----Updated Information-----");
+
+
+       System.out.println("a1:");
+       a1.showInfo();
+
+
+       System.out.println();
+
+
+       System.out.println("a2:");
+       a2.showInfo();
+
+
+
+
+       System.out.println("--- Task 4: Compare balances ---");
+
+
+       double balance1 = a1.getBalance();
+       double balance2 = a2.getBalance();
+
+
+       if (balance1 > balance2) {
+           System.out.println("a1 has more balance");
+       } else if (balance2 > balance1) {
+           System.out.println("a2 has more balance");
+       } else {
+           System.out.println("Both accounts have equal balance");
+       }
+       System.out.println();
+
+
+
+
+       System.out.println("--- Total balance ---");
+
+
+       Bank a3 = new Bank();
+       a3.setAccountName("AccountC");
+       a3.deposit(balance1 + balance2);
+
+
+       a3.showInfo();
+   }
+}
+
+
+
