@@ -1,0 +1,142 @@
+abstract class Product {
+
+
+   protected String productName;
+   protected double basePrice;
+   protected int quantity;
+
+
+   public Product(String productName, double basePrice, int quantity) {
+       this.productName = productName;
+       this.basePrice = basePrice;
+       this.quantity = quantity;
+   }
+
+
+   public double subTotal() {
+       return basePrice * quantity;
+   }
+
+
+   public abstract double calculateFinalPrice();
+
+
+   public void showBill() {
+       System.out.println("===== BILL =====");
+       System.out.println("Name: " + productName);
+       System.out.println("Unit Price: " + basePrice);
+       System.out.println("Quantity: " + quantity);
+       System.out.println("Subtotal: " + subTotal());
+       System.out.println("Final Price: " + calculateFinalPrice());
+       System.out.println("================");
+   }
+}
+class FoodProduct extends Product {
+
+
+   private int expireDays;
+
+
+   public FoodProduct(String productName, double basePrice,
+                      int quantity, int expireDays) {
+
+
+       super(productName, basePrice, quantity);
+       this.expireDays = expireDays;
+   }
+
+
+   @Override
+   public double calculateFinalPrice() {
+
+
+       double subtotal = subTotal();
+       double discount = 0;
+
+
+       if (expireDays <= 3) {
+           discount = subtotal * 0.20;
+       } else if (expireDays <= 7) {
+           discount = subtotal * 0.10;
+       }
+
+
+       return subtotal - discount;
+   }
+}
+
+
+class ElectronicProduct extends Product {
+
+
+   private int warrantyYears;
+
+
+   public ElectronicProduct(String productName, double basePrice,
+                            int quantity, int warrantyYears) {
+
+
+       super(productName, basePrice, quantity);
+       this.warrantyYears = warrantyYears;
+
+
+
+
+   }
+
+
+   @Override
+   public double calculateFinalPrice() {
+
+
+       double subtotal = subTotal();
+       double warrantyCost = 300 * warrantyYears * quantity;
+
+
+       return subtotal + warrantyCost;
+
+
+
+
+   }
+
+
+   public void displayProductInfo() {
+       System.out.println("Product Name: " + productName);
+       System.out.println("Quantity: " + quantity);
+   }
+
+
+}
+public class Main {
+   public static void main(String[] args) {
+
+
+       FoodProduct milk = new FoodProduct("Milk", 25, 4, 2);
+       System.out.println(milk.calculateFinalPrice());
+       milk.showBill();
+
+
+       FoodProduct bread = new FoodProduct("Bread",30,3,6);
+       System.out.println(bread.subTotal());
+       bread.showBill();
+
+
+       ElectronicProduct headphones = new ElectronicProduct("Headphones", 1500, 2, 1);
+       System.out.println(headphones.calculateFinalPrice());
+       headphones.showBill();
+
+
+       ElectronicProduct laptop = new ElectronicProduct("Laptop",25000,1,3);
+       laptop.displayProductInfo();
+       laptop.showBill();
+
+
+       ElectronicProduct tablet = new ElectronicProduct("Tablet",12000,2,2);
+       System.out.println(tablet.calculateFinalPrice());
+       tablet.showBill();
+       }
+   }
+
+
+
